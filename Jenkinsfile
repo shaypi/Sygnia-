@@ -7,7 +7,7 @@ node {
 
     stage("Docker build"){
         sh 'docker version'
-        sh 'docker build -t sygnia:1.0 .'
+        sh 'docker build -t sygnia:1.0 -p 8080:8080 .'
         sh 'docker image list'
         sh 'docker tag sygnia:1.0 shaypi/sygnia:10'
     }
@@ -23,7 +23,7 @@ node {
     stage("SSH Into k8s Server") {
         def remote = [:]
         remote.name = 'Master'
-        remote.host = '10.100.102.2'
+        remote.host = '10.100.102.20'
         remote.user = 'shay'
         remote.password = 'ZAQ!1qaz'
         remote.allowAnyHosts = true

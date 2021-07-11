@@ -18,11 +18,11 @@ spec:
         - name: sygnia
           image: shaypi/sygnia:10
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           readinessProbe:
             httpGet:
               path: /lazy
-              port: 80
+              port: 8080
             initialDelaySeconds: 15
             periodSeconds: 10
           livenessProbe:
