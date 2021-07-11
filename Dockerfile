@@ -1,4 +1,4 @@
-FROM alpine:3.13.0
+FROM alpine:3.14.0
 
 RUN apk add --no-cache wget build-base openssl openssl-dev zlib-dev linux-headers pcre-dev ffmpeg ffmpeg-dev
 
@@ -29,6 +29,7 @@ ENV PATH /usr/local/nginx/sbin:$PATH
 FROM nginx:stable-alpine
 
 COPY nginx.conf /usr/local/nginx/conf/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 ENV PATH /usr/local/nginx/sbin:$PATH
 
@@ -36,11 +37,12 @@ COPY --from=0 /usr/local/nginx/sbin/nginx /usr/sbin/nginx
 
 RUN     chown -R nginx:nginx /var/cache && \
         chown -R nginx:nginx /var/log/nginx && \
-	chown -R nginx:nginx /etc/nginx/conf.d
+	chown -R nginx:nginx /etc/nginx/conf.d && \
+	chown -R nginx:nginx /usr/local/nginx
 RUN touch /var/run/nginx.pid && \
        chown -R nginx:nginx /var/run/nginx.pid
 
-EXPOSE 443 80
+EXPOSE 8080
 
 USER nginx
 
