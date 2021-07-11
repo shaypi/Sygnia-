@@ -16,7 +16,7 @@ spec:
       - name: regcred
       containers:
         - name: sygnia
-          image: shaypi/sygnia:finals
+          image: shaypi/sygnia:10
           ports:
             - containerPort: 80
           readinessProbe:
