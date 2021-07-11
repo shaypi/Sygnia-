@@ -1,4 +1,4 @@
-FROM alpine:3.14.0
+FROM alpine:3.13.0
 
 RUN apk add --no-cache wget build-base openssl openssl-dev zlib-dev linux-headers pcre-dev ffmpeg ffmpeg-dev
 
